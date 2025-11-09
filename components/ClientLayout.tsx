@@ -1,6 +1,6 @@
 'use client'
 
-import { ThemeProvider } from '@/mariam-portfolio/contexts/ThemeContext'
+import { ThemeProvider } from '@//contexts/ThemeContext'
 import { ReactNode } from 'react'
 
 export default function ClientLayout({ children }: { children: ReactNode }) {

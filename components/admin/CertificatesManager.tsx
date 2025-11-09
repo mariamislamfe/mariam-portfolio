@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { certificatesService, uploadImage } from '@/mariam-portfolio/lib/supabaseService'
-import { compressImage } from '@/mariam-portfolio/lib/imageCompression'
-import type { Certificate } from '@/mariam-portfolio/lib/supabase'
+import { certificatesService, uploadImage } from '@//lib/supabaseService'
+import { compressImage } from '@//lib/imageCompression'
+import type { Certificate } from '@//lib/supabase'
 
 export default function CertificatesManager() {
   const [certificates, setCertificates] = useState<Certificate[]>([])

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { galleryService, uploadImage } from '@/mariam-portfolio/lib/supabaseService'
-import type { GalleryItem } from '@/mariam-portfolio/lib/supabase'
+import { galleryService, uploadImage } from '@//lib/supabaseService'
+import type { GalleryItem } from '@//lib/supabase'
 
 export default function GalleryManager() {
   const [items, setItems] = useState<GalleryItem[]>([])

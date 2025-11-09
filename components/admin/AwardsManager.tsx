@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { awardsService } from '@/mariam-portfolio/lib/supabaseService'
-import type { Award } from '@/mariam-portfolio/lib/supabase'
+import { awardsService } from '@/vice'
+import type { Award } from '@//lib/supabase'
 
 export default function AwardsManager() {
   const [items, setItems] = useState<Award[]>([])
