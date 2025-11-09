@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { certificatesService } from '@//lib/supabaseService'
-import type { Certificate } from '@//lib/supabase'
+import { certificatesService } from '@/lib/supabaseService'  
+import type { Certificate } from '@/lib/supabase'
 import Image from 'next/image'
 import SectionHeading from '../SectionHeading'
 
@@ -92,7 +92,7 @@ export default function Certificates() {
                 <option value="all">All Types</option>
                 {types.filter(t => t !== 'all').map(type => (
                   <option key={type} value={type}>
-                    {type?.charAt(0).toUpperCase() + type?.slice(1)}
+                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </option>
                 ))}
               </select>
