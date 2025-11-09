@@ -35,7 +35,7 @@ function Stars() {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#ff69b4"
+          color="#2dd4bf"
           size={0.008}
           sizeAttenuation={true}
           depthWrite={false}
@@ -59,8 +59,8 @@ function FloatingShapes() {
     <mesh ref={meshRef} position={[2, 0, 0]}>
       <torusKnotGeometry args={[0.5, 0.2, 100, 16]} />
       <meshStandardMaterial
-        color="#ff69b4"
-        emissive="#ff69b4"
+        color="#2dd4bf"
+        emissive="#2dd4bf"
         emissiveIntensity={0.3}
         wireframe
         opacity={0.5}

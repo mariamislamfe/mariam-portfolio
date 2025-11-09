@@ -1,5 +1,5 @@
 import { supabase } from './supabase'
-import type { Project, Award, Publication, Event, GalleryItem, Certificate } from './supabase'
+import type { Project, Award, Publication, Event, GalleryItem, Certificate, Company, Testimonial } from './supabase'
 
 // Generic fetch function
 async function fetchData<T>(table: string): Promise<T[]> {
@@ -131,10 +131,61 @@ export const galleryService = {
   delete: (id: number) => deleteData('gallery', id),
 }
 
-// Certificates (NEW!)
+// Certificates
 export const certificatesService = {
   getAll: () => fetchData<Certificate>('certificates'),
   create: (certificate: Partial<Certificate>) => insertData<Certificate>('certificates', certificate),
   update: (id: number, updates: Partial<Certificate>) => updateData<Certificate>('certificates', id, updates),
   delete: (id: number) => deleteData('certificates', id),
+}
+
+// Companies
+export const companiesService = {
+  getAll: async (): Promise<Company[]> => {
+    const { data, error } = await supabase
+      .from('companies')
+      .select('*')
+      .order('order', { ascending: true })
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching companies:', error)
+      return []
+    }
+
+    return data as Company[]
+  },
+  create: (company: Partial<Company>) => insertData<Company>('companies', company),
+  update: (id: number, updates: Partial<Company>) => updateData<Company>('companies', id, updates),
+  delete: (id: number) => deleteData('companies', id),
+}
+
+// Testimonials
+export const testimonialsService = {
+  getAll: async (): Promise<Testimonial[]> => {
+    const { data, error } = await supabase
+      .from('testimonials')
+      .select('*')
+      .eq('approved', true)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching testimonials:', error)
+      return []
+    }
+
+    return data as Testimonial[]
+  },
+  getAllForAdmin: () => fetchData<Testimonial>('testimonials'),
+  create: async (testimonial: Partial<Testimonial>) => {
+    const newTestimonial = {
+      ...testimonial,
+      approved: false, // Default to not approved
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    }
+    return insertData<Testimonial>('testimonials', newTestimonial)
+  },
+  update: (id: number, updates: Partial<Testimonial>) => updateData<Testimonial>('testimonials', id, updates),
+  delete: (id: number) => deleteData('testimonials', id),
+  approve: (id: number) => updateData<Testimonial>('testimonials', id, { approved: true }),
 }
