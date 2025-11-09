@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { publicationsService } from '@/mariam-portfolio/lib/supabaseService'
-import type { Publication } from '@/mariam-portfolio/lib/supabase'
+import { publicationsService } from '@//lib/supabaseService'
+import type { Publication } from '@//lib/supabase'
 import SectionHeading from '../SectionHeading'
 
 export default function Publications() {

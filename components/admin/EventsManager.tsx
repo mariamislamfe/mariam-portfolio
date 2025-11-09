@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { eventsService, uploadImage } from '@/mariam-portfolio/lib/supabaseService'
-import type { Event } from '@/mariam-portfolio/lib/supabase'
+import { eventsService, uploadImage } from '@//lib/supabaseService'
+import type { Event } from '@//lib/supabase'
 
 export default function EventsManager() {
   const [items, setItems] = useState<Event[]>([])

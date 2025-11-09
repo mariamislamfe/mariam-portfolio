@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import AdminDashboard from '@/mariam-portfolio/components/admin/AdminDashboard'
+import AdminDashboard from '@//components/admin/AdminDashboard'
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)

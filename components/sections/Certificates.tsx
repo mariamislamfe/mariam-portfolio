@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { certificatesService } from '@/mariam-portfolio/lib/supabaseService'
-import type { Certificate } from '@/mariam-portfolio/lib/supabase'
+import { certificatesService } from '@//lib/supabaseService'
+import type { Certificate } from '@//lib/supabase'
 import Image from 'next/image'
 import SectionHeading from '../SectionHeading'
 

@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { eventsService } from '@/mariam-portfolio/lib/supabaseService'
-import type { Event } from '@/mariam-portfolio/lib/supabase'
+import { eventsService } from '@//lib/supabaseService'
+import type { Event } from '@//lib/supabase'
 import Image from 'next/image'
 import SectionHeading from '../SectionHeading'
 

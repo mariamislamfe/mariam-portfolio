@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { publicationsService } from '@/mariam-portfolio/lib/supabaseService'
-import type { Publication } from '@/mariam-portfolio/lib/supabase'
+import { publicationsService } from '@//lib/supabaseService'
+import type { Publication } from '@//lib/supabase'
 
 export default function PublicationsManager() {
   const [items, setItems] = useState<Publication[]>([])

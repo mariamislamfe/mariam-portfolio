@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { useTheme } from '@/mariam-portfolio/contexts/ThemeContext'
+import { useTheme } from '@//contexts/ThemeContext'
 
 const navItems = [
   { name: 'Home', href: '#home' },

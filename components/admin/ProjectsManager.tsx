@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { projectsService, uploadImage } from '@/mariam-portfolio/lib/supabaseService'
-import { compressImage } from '@/mariam-portfolio/lib/imageCompression'
-import type { Project } from '@/mariam-portfolio/lib/supabase'
+import { projectsService, uploadImage } from '@//lib/supabaseService'
+import { compressImage } from '@//lib/imageCompression'
+import type { Project } from '@//lib/supabase'
 
 export default function ProjectsManager() {
   const [projects, setProjects] = useState<Project[]>([])

@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { galleryService } from '@/mariam-portfolio/lib/supabaseService'
-import type { GalleryItem } from '@/mariam-portfolio/lib/supabase'
+import { galleryService } from '@//lib/supabaseService'
+import type { GalleryItem } from '@//lib/supabase'
 import Image from 'next/image'
 import SectionHeading from '../SectionHeading'
 

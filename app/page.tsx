@@ -2,18 +2,18 @@
 
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import Navbar from '@/mariam-portfolio/components/Navbar'
-import Hero from '@/mariam-portfolio/components/sections/Hero'
-import Projects from '@/mariam-portfolio/components/sections/Projects'
-import Awards from '@/mariam-portfolio/components/sections/Awards'
-import Publications from '@/mariam-portfolio/components/sections/Publications'
-import Events from '@/mariam-portfolio/components/sections/Events'
-import Certificates from '@/mariam-portfolio/components/sections/Certificates'
-import Gallery from '@/mariam-portfolio/components/sections/Gallery'
-import Contact from '@/mariam-portfolio/components/sections/Contact'
+import Navbar from '@//components/Navbar'
+import Hero from '@//components/sections/Hero'
+import Projects from '@//components/sections/Projects'
+import Awards from '@//components/sections/Awards'
+import Publications from '@//components/sections/Publications'
+import Events from '@//components/sections/Events'
+import Certificates from '@//components/sections/Certificates'
+import Gallery from '@//components/sections/Gallery'
+import Contact from '@//components/sections/Contact'
 
 // Dynamically import 3D background with no SSR
-const Background3D = dynamic(() => import('@/mariam-portfolio/components/Background3D'), {
+const Background3D = dynamic(() => import('@//components/Background3D'), {
   ssr: false,
   loading: () => <div className="fixed inset-0 -z-10 bg-slate-950" />
 })
