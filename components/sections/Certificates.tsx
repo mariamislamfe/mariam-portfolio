@@ -92,7 +92,7 @@ export default function Certificates() {
                 <option value="all">All Types</option>
                 {types.filter(t => t !== 'all').map(type => (
                   <option key={type} value={type}>
-                     {type.charAt(0).toUpperCase() + type.slice(1)}
+                     {type ? type.charAt(0).toUpperCase() + type.slice(1) : ''}
                   </option>
                 ))}
               </select>
