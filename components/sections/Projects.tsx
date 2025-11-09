@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { projectsService } from '@/vice'
-import type { Project } from '@//lib/supabase'
+import { projectsService } from '@/lib/supabaseService'
+import type { Project } from '@/lib/supabase'
 import Image from 'next/image'
 import SectionHeading from '../SectionHeading'
 

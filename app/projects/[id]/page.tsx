@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { projectsService } from '@/vice'
-import type { Project } from '@//lib/supabase'
+import { projectsService } from '@/lib/supabaseService'
+import type { Project } from '@/lib/supabase'
 
 export default function ProjectDetail() {
   const params = useParams()
