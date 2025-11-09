@@ -6,10 +6,9 @@ import { useRouter } from 'next/navigation'
 import { projectsService } from '@/lib/supabaseService'
 import type { Project } from '@/lib/supabase'
 import Image from 'next/image'
-import SectionHeading from '../SectionHeading'
+import { SpotlightCard } from '@/components/ui/SpotlightCard'
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>([])
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
   const [otherProjects, setOtherProjects] = useState<Project[]>([])
   const [showAll, setShowAll] = useState(false)
@@ -21,9 +20,6 @@ export default function Projects() {
 
   const loadProjects = async () => {
     const data = await projectsService.getAll()
-    setProjects(data)
-
-    // Separate featured and other projects
     const featured = data.filter((p: Project) => p.featured).slice(0, 3)
     const others = data.filter((p: Project) => !p.featured)
     setFeaturedProjects(featured)
@@ -33,110 +29,106 @@ export default function Projects() {
   const displayedProjects = showAll ? [...featuredProjects, ...otherProjects] : featuredProjects
 
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          title="Projects"
-          subtitle="Showcasing my latest work and innovations"
-        />
+    <section id="projects" className="py-20 sm:py-24 md:py-32 px-4 sm:px-6 md:px-16 lg:px-24 relative">
+      {/* Background gradient matching Hero */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-teal-500/5 pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 md:mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+            Milestones in the learning journey
+          </h2>
+          <p className="text-base sm:text-lg text-gray-400 max-w-3xl">
+            Each project marks a step forward, showcasing my growth and journey as a developer. Explore how I've tackled challenges and built solutions along the way.
+          </p>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => router.push(`/projects/${project.id}`)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer"
+              transition={{ delay: index * 0.1, duration: 0.6 }}
             >
-              {/* Project Image with overlay on hover */}
-              {project.image && (
-                <div className="relative h-80 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+              <div
+                className="aspect-square cursor-pointer group relative overflow-hidden rounded-2xl border border-gray-800/50 bg-gradient-to-br from-[#1a1a1a] to-[#151515] p-0 transition-all duration-500 hover:border-cyan-500/30 flex flex-col"
+                onClick={() => router.push(`/projects/${project.id}`)}
+                style={{
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.03)'
+                }}
+              >
+                {/* Year Badge */}
+                <div className="absolute top-3 sm:top-4 left-3 sm:left-4 z-20">
+                  <span className="px-2 sm:px-3 py-1 bg-[#0e0e0e]/90 backdrop-blur-sm border border-gray-800 rounded-lg text-xs text-gray-400 font-medium">
+                    2024
+                  </span>
+                </div>
 
-                  {/* Title overlay - always visible */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/80 to-transparent">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-hotpink transition-colors">
-                      {project.title}
-                    </h3>
+                {project.image && (
+                  <div className="relative flex-1 rounded-t-2xl overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/50 to-transparent" />
                   </div>
+                )}
 
-                  {/* Hover overlay with description and details */}
-                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 flex flex-col justify-center">
-                    <h3 className="text-2xl font-bold text-hotpink mb-4">
-                      {project.title}
-                    </h3>
+                <div className="p-4 sm:p-6 relative z-10 bg-[#0e0e0e] flex flex-col justify-end">
+                  <h3 className="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors line-clamp-2">
+                    {project.title}
+                  </h3>
 
-                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                      {project.description}
-                    </p>
+                  <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </p>
 
-                    {/* Tags */}
-                    {project.tags && project.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.slice(0, 3).map((tag, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-hotpink/20 border border-hotpink/40 text-hotpink rounded-full text-xs font-medium"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {project.tags.length > 3 && (
-                          <span className="px-3 py-1 bg-gray-700/50 text-gray-300 rounded-full text-xs font-medium">
-                            +{project.tags.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Awards */}
-                    {project.awards && project.awards.length > 0 && (
-                      <div className="flex items-center gap-2 mb-4">
-                        <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        <span className="text-yellow-400 text-sm font-semibold">
-                          {project.awards.length} Award{project.awards.length > 1 ? 's' : ''}
-                        </span>
-                      </div>
-                    )}
-
-                    {/* View text in hot pink */}
-                    <div className="mt-auto">
-                      <span className="text-hotpink font-semibold text-lg flex items-center gap-2">
-                        View
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </span>
-                    </div>
+                  {/* Read More Link */}
+                  <div className="flex items-center text-cyan-400 text-sm font-medium group-hover:gap-2 transition-all">
+                    <span>Read more</span>
+                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </div>
                 </div>
-              )}
+
+                {/* Hover glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
+              </div>
             </motion.div>
           ))}
         </div>
 
+        {/* View All Projects Button */}
         {otherProjects.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="flex justify-end mt-12"
           >
             <button
               onClick={() => setShowAll(!showAll)}
-              className="text-hotpink font-semibold text-lg hover:text-accent transition-colors duration-300"
+              className="px-6 py-3 bg-transparent border border-gray-800 rounded-full hover:border-cyan-500/50 transition-all duration-300 text-sm text-gray-300 hover:text-white flex items-center gap-2 group"
+              style={{
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.05)'
+              }}
             >
-              {showAll ? 'Show Less' : 'View More'}
+              <span>{showAll ? 'Show Less' : 'View all projects'}</span>
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </button>
           </motion.div>
         )}

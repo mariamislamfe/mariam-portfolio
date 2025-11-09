@@ -64,3 +64,22 @@ export interface Certificate {
   category?: string // e.g., 'AI', 'Web Development', 'Data Science'
   created_at?: string
 }
+
+export interface Company {
+  id: number
+  name: string
+  logo?: string
+  website?: string
+  description?: string
+  order?: number
+  created_at?: string
+}
+
+export interface Testimonial {
+  id: number
+  name: string
+  feedback: string
+  date: string
+  approved?: boolean
+  created_at?: string
+}

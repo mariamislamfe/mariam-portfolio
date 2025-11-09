@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-dm-mono)', 'DM Mono', 'monospace'],
+      },
       colors: {
         primary: {
           50: '#fafafa',
@@ -22,10 +26,10 @@ module.exports = {
         },
         accent: {
           light: '#ff69b4',
-          DEFAULT: '#ff1493',
+          DEFAULT: '#22d3ee',
           dark: '#db0f7a',
         },
-        hotpink: '#ff1493',
+        hotpink: '#22d3ee',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',

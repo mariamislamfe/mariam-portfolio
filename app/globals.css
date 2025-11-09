@@ -13,9 +13,24 @@ html {
 }
 
 body {
-  @apply bg-black text-white transition-colors duration-300;
+  @apply text-white transition-colors duration-300;
+  background: #0e0e0e;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 25% 25%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 75% 75%, rgba(20, 184, 166, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Light Mode Styles */
@@ -41,21 +56,51 @@ html.light ::selection {
 
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-hotpink via-accent-light to-hotpink bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent;
     animation: gradient-shift 3s ease infinite;
     background-size: 200% auto;
   }
 
   .gradient-bg {
-    @apply bg-hotpink/20 border border-hotpink/50;
+    @apply bg-cyan-500/10 border border-cyan-500/30;
   }
 
   .card-gradient {
-    @apply bg-gradient-to-br from-primary-900/50 to-primary-800/50 backdrop-blur-sm;
+    @apply bg-gradient-to-br from-[#1a1a1a] to-[#151515] backdrop-blur-sm;
   }
 
   .glass-effect {
     @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+
+  .bento-card {
+    @apply backdrop-blur-sm border border-gray-800/50 rounded-2xl transition-all duration-500;
+    background: linear-gradient(to bottom right, #1a1a1a, #151515);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .bento-card:hover {
+    @apply border-cyan-500/30;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 20px rgba(6, 182, 212, 0.1);
+  }
+
+  .project-card {
+    @apply backdrop-blur-sm border border-gray-800/50 transition-all duration-500;
+    background: linear-gradient(to bottom right, #1a1a1a, #151515);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .project-card:hover {
+    @apply border-cyan-500/30 transform -translate-y-2;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 30px rgba(6, 182, 212, 0.15);
+  }
+
+  .fade-in-bottom {
+    animation: fadeInBottom 0.6s ease-out forwards;
+  }
+
+  .text-blur-out {
+    animation: textBlurOut 0.4s ease-out forwards;
   }
 }
 
@@ -103,16 +148,16 @@ html.light ::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-hotpink rounded-full;
+  @apply bg-cyan-500 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-accent-dark;
+  @apply bg-cyan-400;
 }
 
 /* Selection */
 ::selection {
-  @apply bg-hotpink/30 text-white;
+  @apply bg-cyan-500/30 text-white;
 }
 
 /* Animations */
@@ -134,7 +179,7 @@ html.light ::-webkit-scrollbar-track {
 .spinner {
   border: 3px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  border-top-color: #ff1493;
+  border-top-color: #22d3ee;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
@@ -142,6 +187,28 @@ html.light ::-webkit-scrollbar-track {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textBlurOut {
+  from {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  to {
+    filter: blur(10px);
+    opacity: 0;
+  }
 }
 
 /* Hide scrollbar for mobile certificate section */
