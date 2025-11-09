@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/IslamIbrahimAbdElNab/Desktop/Mariam%20Portfolio/app/api/auth/route.ts"],"sourcesContent":["import { NextResponse } from 'next/server'\r\n\r\nconst ADMIN_PASSWORD = 'mariam123'\r\n\r\nexport async function POST(request: Request) {\r\n  try {\r\n    const { password } = await request.json()\r\n\r\n    if (password === ADMIN_PASSWORD) {\r\n      return NextResponse.json({ success: true }, { status: 200 })\r\n    } else {\r\n      return NextResponse.json(\r\n        { success: false, message: 'Invalid password' },\r\n        { status: 401 }\r\n      )\r\n    }\r\n  } catch (error) {\r\n    return NextResponse.json(\r\n      { success: false, message: 'Server error' },\r\n      { status: 500 }\r\n    )\r\n  }\r\n}\r\n"],"names":[],"mappings":";;;;AAAA;;AAEA,MAAM,iBAAiB;AAEhB,eAAe,KAAK,OAAgB;IACzC,IAAI;QACF,MAAM,EAAE,QAAQ,EAAE,GAAG,MAAM,QAAQ,IAAI;QAEvC,IAAI,aAAa,gBAAgB;YAC/B,OAAO,gLAAY,CAAC,IAAI,CAAC;gBAAE,SAAS;YAAK,GAAG;gBAAE,QAAQ;YAAI;QAC5D,OAAO;YACL,OAAO,gLAAY,CAAC,IAAI,CACtB;gBAAE,SAAS;gBAAO,SAAS;YAAmB,GAC9C;gBAAE,QAAQ;YAAI;QAElB;IACF,EAAE,OAAO,OAAO;QACd,OAAO,gLAAY,CAAC,IAAI,CACtB;YAAE,SAAS;YAAO,SAAS;QAAe,GAC1C;YAAE,QAAQ;QAAI;IAElB;AACF","debugId":null}}]
-}
