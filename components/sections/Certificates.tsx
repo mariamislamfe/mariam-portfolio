@@ -23,7 +23,7 @@ export default function Certificates() {
   }
 
   // Filter options
-  const filterOptions = ['All', 'Frontend', 'Full-Stack', 'Design', 'Competition']
+  const filterOptions = ['All', 'Programs', 'Workshop', 'Courses', 'Competition']
 
   // Get filtered certificates
   const filteredCertificates = selectedFilter === 'All'
@@ -33,8 +33,11 @@ export default function Certificates() {
         cert.type?.toLowerCase() === selectedFilter.toLowerCase()
       )
 
-  // Show only 6 certificates initially
-  const displayedCertificates = showAll ? filteredCertificates : filteredCertificates.slice(0, 6)
+  // Show featured certificates first, then others (max 6 initially)
+  const featuredCerts = filteredCertificates.filter(cert => cert.featured)
+  const nonFeaturedCerts = filteredCertificates.filter(cert => !cert.featured)
+  const initialCerts = [...featuredCerts, ...nonFeaturedCerts].slice(0, 6)
+  const displayedCertificates = showAll ? filteredCertificates : initialCerts
 
   // Mobile carousel handlers
   const handleMobilePrevious = () => {

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 export default function Hero() {
   const [githubStats, setGithubStats] = useState({ repos: 0, followers: 0, commits: 0 })
-  const [typingStats] = useState({ wpm: 60, accuracy: 98 })
+  const [typingStats] = useState({ wpm: 41, accuracy: 95 })
 
   useEffect(() => {
     fetch('https://api.github.com/users/mariamislamfe')

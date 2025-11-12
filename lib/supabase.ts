@@ -40,7 +40,7 @@ export interface Event {
   title: string
   date: string
   description: string
-  image: string
+  image?: string
   created_at?: string
 }
 
@@ -62,6 +62,7 @@ export interface Certificate {
   image_fit?: 'cover' | 'contain'
   type?: string // e.g., 'course', 'competition', 'certification'
   category?: string // e.g., 'AI', 'Web Development', 'Data Science'
+  featured?: boolean // Show on home page
   created_at?: string
 }
 
@@ -79,6 +80,7 @@ export interface Testimonial {
   id: number
   name: string
   feedback: string
+  rating?: number
   date: string
   approved?: boolean
   created_at?: string
