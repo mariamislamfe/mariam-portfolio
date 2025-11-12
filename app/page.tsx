@@ -9,7 +9,6 @@ import Awards from '@//components/sections/Awards'
 import Publications from '@//components/sections/Publications'
 import Events from '@//components/sections/Events'
 import Certificates from '@//components/sections/Certificates'
-import Gallery from '@//components/sections/Gallery'
 import Testimonials from '@//components/sections/Testimonials'
 import Companies from '@//components/sections/Companies'
 import Contact from '@//components/sections/Contact'
@@ -37,7 +36,6 @@ export default function Home() {
         <Companies />
         <Events />
         <Certificates />
-        <Gallery />
         <Testimonials />
         <Contact />
       </div>

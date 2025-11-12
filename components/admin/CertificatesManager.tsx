@@ -89,10 +89,22 @@ export default function CertificatesManager() {
     setIsModalOpen(true)
   }
 
+  const featuredCount = certificates.filter(cert => cert.featured).length
+
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-white">🎓 Certificates Management</h1>
+        <div>
+          <h1 className="text-3xl font-bold text-white mb-2">🎓 Certificates Management</h1>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-400">
+              Total: {certificates.length}
+            </span>
+            <span className="text-sm px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full border border-cyan-500/30">
+              ⭐ Featured: {featuredCount}/6
+            </span>
+          </div>
+        </div>
         <button
           onClick={() => { setIsModalOpen(true); setEditingId(null); setFormData({}) }}
           className="px-6 py-3 bg-hotpink text-white rounded-lg hover:shadow-lg hover:shadow-hotpink/50 transition-all"
@@ -129,7 +141,14 @@ export default function CertificatesManager() {
               </div>
             )}
             {cert.category && (
-              <p className="text-xs text-gray-400 mb-3">{cert.category}</p>
+              <p className="text-xs text-gray-400 mb-2">{cert.category}</p>
+            )}
+            {cert.featured && (
+              <div className="mb-3">
+                <span className="px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs border border-cyan-500/30">
+                  ⭐ Featured
+                </span>
+              </div>
             )}
             <div className="flex gap-2">
               <button onClick={() => handleEdit(cert)} className="flex-1 px-3 py-2 bg-hotpink text-white text-sm rounded hover:bg-hotpink/80 transition-all" disabled={loading}>Edit</button>
@@ -272,6 +291,21 @@ export default function CertificatesManager() {
                     </span>
                   </label>
                 </div>
+              </div>
+
+              <div>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={formData.featured || false}
+                    onChange={e => setFormData({...formData, featured: e.target.checked})}
+                    className="w-5 h-5 text-cyan-500 bg-black border-cyan-500/50 rounded focus:ring-cyan-500"
+                  />
+                  <span className="text-white">
+                    <span className="font-medium">⭐ Featured Certificate</span>
+                    <span className="block text-xs text-gray-400">Display on home page (max 6 featured)</span>
+                  </span>
+                </label>
               </div>
 
               {formData.image && (

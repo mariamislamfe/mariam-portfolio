@@ -52,14 +52,22 @@ export default function Events() {
               }}
             >
               {/* Event Image */}
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/50 to-transparent" />
+              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0e0e0e]">
+                {event.image ? (
+                  <>
+                    <Image
+                      src={event.image}
+                      alt={event.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/50 to-transparent" />
+                  </>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-6xl opacity-20">🎤</div>
+                  </div>
+                )}
 
                 {/* Date Badge */}
                 <div className="absolute top-4 left-4 bg-[#0e0e0e]/90 backdrop-blur-sm border border-gray-800 px-4 py-2 rounded-lg">
