@@ -5,13 +5,12 @@ import { motion } from 'framer-motion'
 import ProjectsManager from './ProjectsManager'
 import AwardsManager from './AwardsManager'
 import PublicationsManager from './PublicationsManager'
-import EventsManager from './EventsManager'
 import GalleryManager from './GalleryManager'
 import CertificatesManager from './CertificatesManager'
 import StorageManager from './StorageManager'
 import Link from 'next/link'
 
-type Section = 'projects' | 'awards' | 'publications' | 'events' | 'gallery' | 'certificates' | 'storage' | 'companies' | 'testimonials'
+type Section = 'projects' | 'awards' | 'publications' | 'gallery' | 'certificates' | 'storage' | 'companies' | 'testimonials'
 
 interface Props {
   onLogout: () => void
@@ -21,7 +20,6 @@ const sections = [
   { id: 'projects' as Section, name: 'Projects', icon: '💻' },
   { id: 'awards' as Section, name: 'Awards', icon: '🏆' },
   { id: 'publications' as Section, name: 'Publications', icon: '📚' },
-  { id: 'events' as Section, name: 'Events', icon: '📅' },
   { id: 'gallery' as Section, name: 'Gallery', icon: '🖼️' },
   { id: 'certificates' as Section, name: 'Certificates', icon: '🎓' },
   { id: 'storage' as Section, name: 'Storage', icon: '💾' },
@@ -43,8 +41,6 @@ export default function AdminDashboard({ onLogout }: Props) {
         return <AwardsManager />
       case 'publications':
         return <PublicationsManager />
-      case 'events':
-        return <EventsManager />
       case 'gallery':
         return <GalleryManager />
       case 'certificates':

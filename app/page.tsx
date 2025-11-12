@@ -7,7 +7,6 @@ import Hero from '@//components/sections/Hero'
 import Projects from '@//components/sections/Projects'
 import Awards from '@//components/sections/Awards'
 import Publications from '@//components/sections/Publications'
-import Events from '@//components/sections/Events'
 import Certificates from '@//components/sections/Certificates'
 import Testimonials from '@//components/sections/Testimonials'
 import Companies from '@//components/sections/Companies'
@@ -34,7 +33,6 @@ export default function Home() {
         <Awards />
         <Publications />
         <Companies />
-        <Events />
         <Certificates />
         <Testimonials />
         <Contact />
